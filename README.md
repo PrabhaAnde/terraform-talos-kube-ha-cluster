@@ -154,6 +154,8 @@ Check if all system pods are running:
 kubectl get pods -n kube-system
 ```
 
+![Kubernetes Cluster Nodes](KubeCtl.JPG)
+
 ### Step 8: (Optional) Install MetalLB for Load Balancer Services
 
 If you need LoadBalancer service support, install MetalLB:
@@ -174,6 +176,8 @@ Talos Linux provides a unique management approach compared to traditional Linux 
 ```bash
 talosctl --nodes 10.0.0.60 dashboard
 ```
+
+![Talos Dashboard](TalosDashboard.JPG)
 
 ### Updating Talos Configuration
 
