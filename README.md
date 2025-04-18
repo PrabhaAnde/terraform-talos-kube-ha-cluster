@@ -1,6 +1,6 @@
-# Talos Kubernetes on Proxmox
+# Talos Kubernetes HA Cluster Automation with Terraform on Proxmox
 
-This project provides infrastructure-as-code to deploy a high-availability Kubernetes cluster using [Talos Linux](https://www.talos.dev/) on Proxmox virtualization. It uses Terraform for provisioning and includes post-installation scripts for Kubernetes configuration and CNI setup.
+This project provides infrastructure-as-code to deploy a production grade high-availability Kubernetes cluster using [Talos Linux](https://www.talos.dev/) on Proxmox virtualization. It uses Terraform for provisioning and includes post-installation scripts for Kubernetes configuration and CNI setup.
 
 ## Overview
 
@@ -88,12 +88,12 @@ terraform apply
 ```
 
 This process:
-1. Downloads the Talos Linux ISO to Proxmox
-2. Creates control plane and worker VMs
-3. Configures Talos on all nodes
-4. Bootstraps the Kubernetes cluster
-5. Generates `talosconfig` and `kubeconfig` files in your current directory
-
+1. Prompts for SSH login credentials to connect to your Proxmox host
+2. Downloads the Talos Linux ISO to Proxmox
+3. Creates control plane and worker VMs
+4. Configures Talos on all nodes
+5. Bootstraps the Kubernetes cluster
+6. Generates `talosconfig` and `kubeconfig` files in your current directory
 ### Step 4: Configure Local Access
 
 The Terraform process generates two configuration files:
@@ -137,6 +137,9 @@ This script will:
 
 Wait for Cilium to be fully operational before proceeding.
 
+#### Encrypting Network Traffic with Wireguard
+
+By default, network encryption is disabled. To enable Wireguard encryption for Cilium, refer to lines 118-119 in the installation script. Uncomment and modify the Helm values to activate Wireguard encryption. For detailed information about Cilium's Wireguard encryption implementation, see the [official documentation](https://docs.cilium.io/en/latest/security/network/encryption-wireguard/#encryption-wg).
 ### Step 7: Verify Cluster Status
 
 Check if all nodes are ready:
@@ -220,13 +223,11 @@ talosctl --nodes 10.0.0.60 logs
 
 For more advanced troubleshooting:
 
-1. Check the [Talos Documentation](https://www.talos.dev/v1.9/talos-guides/troubleshooting/)
-2. Join the [Talos Linux Slack Channel](https://slack.sigs.k8s.io/)
-3. Check the [Cilium Documentation](https://docs.cilium.io/en/stable/)
+1. Check the [Talos Documentation](https://www.talos.dev/v1.9/talos-guides/install/)
+2. Check the [Cilium Documentation](https://docs.cilium.io/en/stable/)
 
 ## Resources
 
-- [Talos Linux Documentation](https://www.talos.dev/v1.9/talos-guides/install/)
 - [Kubernetes Documentation](https://kubernetes.io/docs/home/)
 - [Proxmox Documentation](https://pve.proxmox.com/wiki/Main_Page)
 - [Cilium Documentation](https://docs.cilium.io/en/stable/)
