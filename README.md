@@ -237,6 +237,9 @@ For more advanced troubleshooting:
 
 Please refer to the [Talos Linux Upgrade Guide](https://www.talos.dev/v1.9/talos-guides/upgrading-talos/) for instructions on upgrading your Talos nodes.
 
-## License
+## Tags
 
+#talos #kubernetes #k8s #proxmox #terraform #highavailability #ha #cilium #cni #wireguard #infrastructure #iac #devops #taloslinux #kubernetescluster #proxmoxve #terraformmodule
+
+## License
 This project is provided as-is under an open-source license.
